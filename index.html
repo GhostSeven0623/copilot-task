@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="血糖调节负反馈 3D 教学演示：进食、胰岛B细胞、胰岛素、肝脏与肝糖原的完整调节过程。"
+    />
+    <title>血糖调节 · 3D 微观教学实验室</title>
+    <script type="module" crossorigin src="/copilot-task/assets/index-DV1ZgZw0.js"></script>
+    <link rel="stylesheet" crossorigin href="/copilot-task/assets/index-UOCbEDUM.css">
+  </head>
+  <body>
+    <!-- ===================== 加载遮罩 ===================== -->
+    <div id="loading-screen">
+      <div class="loader">
+        <div class="loader-orbit" aria-hidden="true">
+          <span class="orbit-ring ring-a"></span>
+          <span class="orbit-ring ring-b"></span>
+          <span class="orbit-core"></span>
+        </div>
+        <p class="loader-eyebrow">GLUCOSE HOMEOSTASIS LAB</p>
+        <h2>正在构建微观血液世界</h2>
+        <div class="loader-track">
+          <div id="progress-bar"></div>
+        </div>
+        <div class="loader-meta">
+          <span id="progress-text">准备加载模型…</span>
+          <span id="progress-percent">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 主界面 ===================== -->
+    <div id="app">
+      <!-- 左侧：控制台、流程、知识卡片 -->
+      <aside class="panel panel-left">
+        <header class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <span class="mark-drop"></span>
+            <span class="mark-pulse"></span>
+          </div>
+          <div class="brand-copy">
+            <p class="eyebrow">BIOLOGY · HOMEOSTASIS</p>
+            <h1>血糖调节</h1>
+            <p class="brand-sub">负反馈调节 · 3D 微观教学实验室</p>
+          </div>
+        </header>
+
+        <div class="system-line">
+          <span class="live-dot"></span>
+          <span>交互式教学演示</span>
+          <span class="system-divider"></span>
+          <span id="asset-status">模型载入中</span>
+        </div>
+
+        <section class="control-stack" aria-label="演示控制">
+          <button id="btn-eat" class="action-btn action-meal" type="button" disabled>
+            <span class="btn-icon" aria-hidden="true">🍔</span>
+            <span class="btn-copy">
+              <strong>进食：血糖升高</strong>
+              <small>25 秒完整慢动作教学</small>
+            </span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+          <button id="btn-exercise" class="action-btn action-exercise" type="button" disabled>
+            <span class="btn-icon" aria-hidden="true">🏃</span>
+            <span class="btn-copy">
+              <strong>运动：血糖降低</strong>
+              <small>22 秒升糖调节演示</small>
+            </span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+          <button id="btn-diabetes" class="action-btn action-diabetes" type="button" disabled>
+            <span class="btn-icon" aria-hidden="true">⚠️</span>
+            <span class="btn-copy">
+              <strong>模拟 1 型糖尿病</strong>
+              <small>缺乏胰岛素 · 高血糖异常模式</small>
+            </span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+          <button id="btn-reset" class="reset-btn" type="button">
+            <span aria-hidden="true">↺</span> 重置场景
+          </button>
+        </section>
+
+        <section class="steps-panel" aria-labelledby="steps-title">
+          <div class="section-heading">
+            <h3 id="steps-title">调节流程</h3>
+            <span id="step-progress" class="section-count">0 / 5</span>
+          </div>
+          <ol id="step-list" class="step-list">
+            <li data-step="0">
+              <span class="step-node"></span>
+              <span class="step-copy"><strong>血糖偏离稳态</strong><small>进食 / 运动</small></span>
+              <span class="step-time">0–4s</span>
+            </li>
+            <li data-step="1">
+              <span class="step-node"></span>
+              <span class="step-copy"><strong>感受器受刺激</strong><small>胰岛 A / B 细胞</small></span>
+              <span class="step-time">4–8s</span>
+            </li>
+            <li data-step="2">
+              <span class="step-node"></span>
+              <span class="step-copy"><strong>激素分泌入血</strong><small>胰岛素 / 胰高血糖素</small></span>
+              <span class="step-time">8–14s</span>
+            </li>
+            <li data-step="3">
+              <span class="step-node"></span>
+              <span class="step-copy"><strong>靶器官响应</strong><small>肝脏 · 肝糖原</small></span>
+              <span class="step-time">14–20s</span>
+            </li>
+            <li data-step="4">
+              <span class="step-node"></span>
+              <span class="step-copy"><strong>负反馈恢复稳态</strong><small>血糖回落 / 回升</small></span>
+              <span class="step-time">20–25s</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="knowledge-card" class="knowledge-card" data-tone="intro" aria-live="polite">
+          <div class="card-aurora" aria-hidden="true"></div>
+          <div class="card-watermark" id="card-index" aria-hidden="true">00</div>
+          <div class="card-topline">
+            <span id="card-phase" class="card-kicker">教学导览</span>
+            <span id="card-duration" class="card-duration">25 s</span>
+          </div>
+          <h2 id="card-title">血糖的负反馈调节</h2>
+          <div id="card-content" class="card-content">
+            <p>血糖稳态依赖一条完整的调节回路：<strong>刺激 → 感受器 → 激素 → 靶器官 → 反馈</strong>。</p>
+            <p>点击左侧「进食」按钮，观察葡萄糖进入血液后，胰岛 B 细胞如何分泌胰岛素，并促使肝脏合成肝糖原。</p>
+          </div>
+          <div class="card-footer">
+            <span class="footer-dot"></span>
+            <span id="card-hint">建议先观看完整演示，再拖动 3D 场景自由观察。</span>
+          </div>
+        </section>
+      </aside>
+
+      <!-- 中间：3D 舞台 -->
+      <main class="stage">
+        <div class="stage-aura" aria-hidden="true"></div>
+        <div id="canvas-container"></div>
+
+        <!-- 顶部实时读数 -->
+        <div class="stage-hud">
+          <div class="hud-card">
+            <div class="hud-label"><span class="hud-live"></span> 实时血糖</div>
+            <div class="hud-value">
+              <strong id="blood-sugar-text">4.6</strong>
+              <span>mmol/L</span>
+            </div>
+            <div id="blood-status" class="hud-status" data-state="normal">
+              <i></i><span>正常范围</span>
+            </div>
+          </div>
+          <div class="hud-mini">
+            <div class="mini-stat">
+              <span>葡萄糖分子</span>
+              <strong id="glucose-count">18</strong>
+            </div>
+            <div class="mini-stat">
+              <span>演示时间</span>
+              <strong id="stage-clock">00:00</strong>
+            </div>
+          </div>
+        </div>
+
+        <div id="neuro-chip" class="neuro-chip">
+          <div class="neuro-orb" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="neuro-copy">
+            <b>下丘脑</b>
+            <small>神经调节中枢</small>
+          </div>
+          <span id="neuro-status" class="neuro-status">监测血糖</span>
+        </div>
+
+        <div class="stage-legend" aria-label="图例">
+          <span><i class="legend-dot dot-gold"></i>葡萄糖</span>
+          <span><i class="legend-dot dot-blue"></i>胰岛素</span>
+          <span><i class="legend-dot dot-pink"></i>胰高血糖素</span>
+        </div>
+
+        <div id="stage-phase" class="stage-phase">准备就绪</div>
+
+        <!-- 底部播放进度 -->
+        <div class="playback-dock">
+          <div class="playback-meta">
+            <span id="playback-state">等待开始教学演示</span>
+            <span id="playback-time">00:00 / 00:25</span>
+          </div>
+          <div class="playback-track">
+            <div id="playback-bar"></div>
+          </div>
+          <div class="playback-hint">拖动旋转 · 滚轮缩放 · 右键平移</div>
+        </div>
+      </main>
+
+      <!-- 右侧：数据监测 -->
+      <aside class="panel panel-right">
+        <header class="data-head">
+          <div>
+            <p class="eyebrow">REAL-TIME MONITOR</p>
+            <h2>实时数据监测</h2>
+          </div>
+          <span class="data-live"><i></i>LIVE</span>
+        </header>
+
+        <section class="chart-card">
+          <div class="chart-title">
+            <div>
+              <span class="chart-kicker">血糖浓度曲线</span>
+              <h3>Blood Glucose</h3>
+            </div>
+            <div class="chart-current">
+              <strong id="chart-sugar">4.6</strong>
+              <span>mmol/L</span>
+            </div>
+          </div>
+          <div id="chart-container" role="img" aria-label="血糖浓度随时间变化折线图"></div>
+          <div class="chart-foot">
+            <span><i class="legend-line"></i>血糖浓度</span>
+            <span><i class="legend-band"></i>正常范围 3.9–6.1</span>
+          </div>
+        </section>
+
+        <section class="hormone-card">
+          <div class="section-heading hormone-heading">
+            <h3>激素浓度</h3>
+            <span class="section-count">相对值 a.u.</span>
+          </div>
+
+          <div class="hormone-row" data-hormone="insulin">
+            <div class="hormone-meta">
+              <span class="hormone-name"><i class="legend-dot dot-blue"></i>胰岛素</span>
+              <span class="hormone-source">胰岛 B 细胞</span>
+              <span class="hormone-value"><strong id="insulin-text">0.8</strong><small>a.u.</small></span>
+            </div>
+            <div class="bar-track"><div id="insulin-bar" class="bar-fill bar-blue"></div></div>
+          </div>
+
+          <div class="hormone-row" data-hormone="glucagon">
+            <div class="hormone-meta">
+              <span class="hormone-name"><i class="legend-dot dot-pink"></i>胰高血糖素</span>
+              <span class="hormone-source">胰岛 A 细胞</span>
+              <span class="hormone-value"><strong id="glucagon-text">0.6</strong><small>a.u.</small></span>
+            </div>
+            <div class="bar-track"><div id="glucagon-bar" class="bar-fill bar-pink"></div></div>
+          </div>
+
+          <div class="hormone-legend">
+            <span>0</span><span>5</span><span>10 a.u.</span>
+          </div>
+        </section>
+
+        <section class="feedback-card">
+          <div class="feedback-icon" aria-hidden="true">↻</div>
+          <div>
+            <h3>负反馈调节</h3>
+            <p>结果反过来抑制原因，使血糖回到相对稳定的范围。</p>
+          </div>
+        </section>
+
+        <div class="data-footnote">
+          <span class="footnote-dot"></span>
+          教学示意数据，用于展示调节趋势，不用于医学诊断。
+        </div>
+      </aside>
+    </div>
+
+  </body>
+</html>
